@@ -6,7 +6,7 @@ import net.minecraft.recipe.Ingredient;
 
 public class CopperToolMaterial implements ToolMaterial {
     public static final CopperToolMaterial INSTANCE = new CopperToolMaterial();
-
+    
     @Override
     public int getDurability() {
         return 180;
