@@ -35,11 +35,13 @@ public class CopperTier implements ModInitializer {
         // However, some things (like resources) may still be uninitialized.
         // Proceed with mild caution.
 
-        LOGGER.info("Copper Tier Initializing.");
+        LOGGER.info("[Copper Tier] Initialization started.");
 
+        LOGGER.info("[Copper Tier] Item registration starting.");
         registerItems();
+        LOGGER.info("[Copper Tier] Item registration complete.");
 
-        LOGGER.info("Copper Tier Initialized!");
+        LOGGER.info("[Copper Tier] Initialization completed.");
     }
 
     private void registerItems() {
