@@ -1,4 +1,4 @@
-package com.exotheterrible.coppertier.item;
+package com.chadsten.coppertier.item;
 
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ToolMaterial;

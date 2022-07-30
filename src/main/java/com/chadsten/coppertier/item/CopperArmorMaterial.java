@@ -1,4 +1,4 @@
-package com.exotheterrible.coppertier.item;
+package com.chadsten.coppertier.item;
 
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;

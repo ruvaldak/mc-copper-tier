@@ -1,6 +1,6 @@
-package com.exotheterrible.coppertier;
+package com.chadsten.coppertier;
 
-import com.exotheterrible.coppertier.item.*;
+import com.chadsten.coppertier.item.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.EquipmentSlot;

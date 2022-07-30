@@ -3,7 +3,7 @@
   "id": "modid",
   "version": "${version}",
   "name": "Copper Tier",
-  "description": "Adds copper tools, weapons, and armor to MC, balanced for a vanilla experience.",
+  "description": "Adds a copper tier of tools, weapons, and armor (including horse armor) to the game, balanced between the leather and iron tiers found in vanilla.",
   "authors": [
     "Me!"
   ],
@@ -16,7 +16,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.exotheterrible.coppertier.CopperTier"
+      "com.chadsten.coppertier.CopperTier"
     ]
   },
   "mixins": [
@@ -27,9 +27,5 @@
     "fabric": "*",
     "minecraft": "~1.19",
     "java": ">=17"
-  },
-  "suggests": {
-    "cloth-config2": "7.x.x",
-    "modmenu": "*"
   }
 }
