@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "copper-tier",
   "version": "${version}",
   "name": "Copper Tier",
   "description": "Adds a copper tier of tools, weapons, and armor (including horse armor) to the game, balanced between the leather and iron tiers found in vanilla.",
