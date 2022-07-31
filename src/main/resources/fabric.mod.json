@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "copper-tier",
+  "id": "coppertier",
   "version": "${version}",
   "name": "Copper Tier",
   "description": "Adds a copper tier of tools, weapons, and armor (including horse armor) to the game, balanced between the leather and iron tiers found in vanilla.",
@@ -20,7 +20,6 @@
     ]
   },
   "mixins": [
-    "coppertier.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.14.8",
