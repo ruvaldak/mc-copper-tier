@@ -3,8 +3,12 @@ package com.chadsten.coppertier;
 import com.chadsten.coppertier.item.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTables;
+import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.slf4j.Logger;
@@ -21,13 +25,44 @@ public class CopperTier implements ModInitializer {
     public static final CopperPickaxeItem COPPER_PICKAXE = new CopperPickaxeItem(CopperToolMaterial.INSTANCE, 1, -2.8F, new FabricItemSettings().group(ItemGroup.TOOLS));
     public static final CopperAxeItem COPPER_AXE = new CopperAxeItem(CopperToolMaterial.INSTANCE, 6.5F, -3.2F, new FabricItemSettings().group(ItemGroup.TOOLS));
     public static final CopperHoeItem COPPER_HOE = new CopperHoeItem(CopperToolMaterial.INSTANCE, -1, -1.5F, new FabricItemSettings().group(ItemGroup.TOOLS));
-
     public static final ArmorItem COPPER_HELMET = new ArmorItem(CopperArmorMaterial.INSTANCE, EquipmentSlot.HEAD, new FabricItemSettings().group(ItemGroup.COMBAT));
     public static final ArmorItem COPPER_CHESTPLATE = new ArmorItem(CopperArmorMaterial.INSTANCE, EquipmentSlot.CHEST, new FabricItemSettings().group(ItemGroup.COMBAT));
     public static final ArmorItem COPPER_LEGGINGS = new ArmorItem(CopperArmorMaterial.INSTANCE, EquipmentSlot.LEGS, new FabricItemSettings().group(ItemGroup.COMBAT));
     public static final ArmorItem COPPER_BOOTS = new ArmorItem(CopperArmorMaterial.INSTANCE, EquipmentSlot.FEET, new FabricItemSettings().group(ItemGroup.COMBAT));
-
     public static final HorseArmorItem COPPER_HORSE_ARMOR = new HorseArmorItem(4, "copper", new FabricItemSettings().maxCount(1).group(ItemGroup.MISC));
+    public static final LootTableItem[] LOOT_TABLE = {
+            new LootTableItem(LootTables.VILLAGE_WEAPONSMITH_CHEST, 5, CopperTier.COPPER_PICKAXE),
+            new LootTableItem(LootTables.VILLAGE_TOOLSMITH_CHEST, 5, CopperTier.COPPER_PICKAXE),
+            new LootTableItem(LootTables.IGLOO_CHEST_CHEST, 2, CopperTier.COPPER_AXE),
+            new LootTableItem(LootTables.UNDERWATER_RUIN_SMALL_CHEST, 2, CopperTier.COPPER_AXE),
+            new LootTableItem(LootTables.RUINED_PORTAL_CHEST, 2, CopperTier.COPPER_AXE),
+            new LootTableItem(LootTables.VILLAGE_TOOLSMITH_CHEST, 5, CopperTier.COPPER_SHOVEL),
+            new LootTableItem(LootTables.VILLAGE_TOOLSMITH_CHEST, 3, CopperTier.COPPER_HOE),
+            new LootTableItem(LootTables.STRONGHOLD_CORRIDOR_CHEST, 4, CopperTier.COPPER_SWORD),
+            new LootTableItem(LootTables.VILLAGE_WEAPONSMITH_CHEST, 4, CopperTier.COPPER_SWORD),
+            new LootTableItem(LootTables.VILLAGE_WEAPONSMITH_CHEST, 4, CopperTier.COPPER_HELMET),
+            new LootTableItem(LootTables.VILLAGE_WEAPONSMITH_CHEST, 4, CopperTier.COPPER_CHESTPLATE),
+            new LootTableItem(LootTables.VILLAGE_WEAPONSMITH_CHEST, 4, CopperTier.COPPER_LEGGINGS),
+            new LootTableItem(LootTables.VILLAGE_WEAPONSMITH_CHEST, 4, CopperTier.COPPER_BOOTS),
+            new LootTableItem(LootTables.VILLAGE_WEAPONSMITH_CHEST, 3, CopperTier.COPPER_HORSE_ARMOR),
+            new LootTableItem(LootTables.SIMPLE_DUNGEON_CHEST, 3, CopperTier.COPPER_HORSE_ARMOR),
+    };
+
+    public static void buildLootTables() {
+        for (LootTableItem LOOT_ENTRY : LOOT_TABLE) {
+
+            LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
+                if (source.isBuiltin() && LOOT_ENTRY.id.equals(id)) {
+
+                    LootPool.Builder poolBuilder = LootPool.builder()
+                            .with(ItemEntry.builder(LOOT_ENTRY.item).weight(LOOT_ENTRY.weight));
+
+
+                    tableBuilder.pool(poolBuilder);
+                }
+            });
+        }
+    }
 
     @Override
     public void onInitialize() {
@@ -40,6 +75,10 @@ public class CopperTier implements ModInitializer {
         LOGGER.info("[Copper Tier] Item registration starting.");
         registerItems();
         LOGGER.info("[Copper Tier] Item registration complete.");
+
+        LOGGER.info("[Copper Tier] Loot table modification starting.");
+        buildLootTables();
+        LOGGER.info("[Copper Tier] Loot table modification complete.");
 
         LOGGER.info("[Copper Tier] Initialization completed.");
     }
@@ -57,4 +96,16 @@ public class CopperTier implements ModInitializer {
         Registry.register(Registry.ITEM, new Identifier("coppertier", "copper_horse_armor"), COPPER_HORSE_ARMOR);
     }
 
+    public static class LootTableItem {
+        public Identifier id;
+        public int weight;
+
+        public Item item;
+
+        public LootTableItem(Identifier id, int weight, Item item) {
+            this.id = id;
+            this.weight = weight;
+            this.item = item;
+        }
+    }
 }

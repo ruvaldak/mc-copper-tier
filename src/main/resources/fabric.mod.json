@@ -5,13 +5,13 @@
   "name": "Copper Tier",
   "description": "Adds a copper tier of tools, weapons, and armor (including horse armor) to the game, balanced between the leather and iron tiers found in vanilla.",
   "authors": [
-    "Me!"
+    "https://github.com/chadsten"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
+    "homepage": "https://github.com/chadsten/mc-copper-tier",
     "sources": "https://github.com/chadsten/mc-copper-tier"
   },
-  "license": "CC0-1.0",
+  "license": "GPL-3.0",
   "icon": "assets/coppertier/icon.png",
   "environment": "*",
   "entrypoints": {
